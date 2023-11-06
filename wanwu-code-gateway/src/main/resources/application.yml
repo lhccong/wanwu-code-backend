@@ -1,0 +1,58 @@
+server:
+  port: 4399
+spring:
+  # 支持 swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # 数据库配置
+  # todo 需替换配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/wanwu_code?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  # Redis 配置
+  # todo 需替换配置，然后取消注释
+  redis:
+    database: 4
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+  cloud:
+    gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
+          # options请求 就是一种询问服务器是否浏览器可以跨域的请求
+          # 如果每次跨域都有询问服务器是否浏览器可以跨域对性能也是损耗
+          # 可以配置本次跨域检测的有效期maxAge
+        # 在maxAge设置的时间范围内，不去询问，统统允许跨域
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedHeaders: "*"
+            allowedMethods: # 允许跨域的 Ajax请求
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            # allowCredentials: true
+            maxAge: 3600
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes: # 网关路由配置
+        - id: wanwu-code-usercenter
+          uri: lb://wanwu-code-usercenter
+          predicates:
+            - Path=/wanwu-usercenter/**
+          filters:
+            - StripPrefix=1
+        - id: wanwu-code-bi
+          uri: lb://wanwu-code-bi
+          predicates:
+            - Path=/wanwu-bi/**
+          filters:
+            - StripPrefix=1

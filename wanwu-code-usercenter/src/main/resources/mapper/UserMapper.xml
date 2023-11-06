@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cong.wanwu.usercenter.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.cong.wanwu.common.model.entity.User">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="unionId" column="unionId" jdbcType="VARCHAR"/>
+        <result property="mpOpenId" column="mpOpenId" jdbcType="VARCHAR"/>
+        <result property="accessKey" column="accessKey" jdbcType="VARCHAR"/>
+        <result property="secretKey" column="secretKey" jdbcType="VARCHAR"/>
+        <result property="userName" column="userName" jdbcType="VARCHAR"/>
+        <result property="concernNum" column="concernNum" jdbcType="INTEGER"/>
+        <result property="fansNum" column="fansNum" jdbcType="INTEGER"/>
+        <result property="postNum" column="postNum" jdbcType="INTEGER"/>
+        <result property="userAvatar" column="userAvatar" jdbcType="VARCHAR"/>
+        <result property="tags" column="tags" jdbcType="VARCHAR"/>
+        <result property="userProfile" column="userProfile" jdbcType="VARCHAR"/>
+        <result property="userRole" column="userRole" jdbcType="VARCHAR"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,unionId,mpOpenId,accessKey,secretKey,postNum,concernNum,fansNum
+        userName,userAvatar,userProfile,
+        userRole,createTime,updateTime,isDelete
+    </sql>
+</mapper>
