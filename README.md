@@ -1,6 +1,6 @@
 <p align="center">
     <a href="" target="_blank">
-      <img src="http://124.70.210.130/Wanwu.jpg" width="280" />
+      <img src="https://qingxin.store/img/wanwu-code-imges/2023/11/06/1/TJ78wiXU-1699254512666.jpeg" width="280" />
     </a>
 </p>
 
@@ -17,21 +17,21 @@
 
 
 
-
+https://github.com/lhccong/wanwu-code-backend/blob/master/doc/image-20231020105126212.png
 
 ### 项目演示
 
 #### 项目
 
-![image-20231020105126212](.\doc\image-20231020105126212.png)
+![image-20231020105126212](/doc/image-20231020105126212.png)
 
-![image-20231020105155593](.\doc\image-20231020105155593.png)
+![image-20231020105155593](/doc/image-20231020105155593.png)
 
-![image-20231020105215046](.\doc\image-20231020105215046.png)
+![image-20231020105215046](/doc/image-20231020105215046.png)
 
-![image-20231020105235862](.\doc\image-20231020105235862.png)
+![image-20231020105235862](/doc/image-20231020105235862.png)
 
-![image-20231020105305192](.\doc\image-20231020105305192.png)
+![image-20231020105305192](/doc/image-20231020105305192.png)
 
 ### 技术选型
 
