@@ -1,8 +1,9 @@
 <p align="center">
     <a href="" target="_blank">
-      <img src="https://qingxin.store/img/wanwu-code-imges/2023/11/06/1/TJ78wiXU-1699254512666.jpeg" width="280" />
+      <img src="./doc/Wanwu.jpg" width="280" />
     </a>
 </p>
+
 
 <h1 align="center">WanwuCode-万物</h1>
 <p align="center"><strong>一个融合万物代码的小网站🌌-拥有鱼皮自主项目API开放平台、BI智能分析平台、博客系统、伙伴匹配功能、聚合搜索功能（融合了CSDN、以及博客园的内容）。<em>持续更新 ing～</em></strong></p>
