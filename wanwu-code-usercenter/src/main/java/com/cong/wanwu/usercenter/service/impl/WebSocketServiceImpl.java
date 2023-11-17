@@ -347,7 +347,7 @@ public class WebSocketServiceImpl implements WebSocketService {
         MessageTypeEnum messageTypeEnum = MessageTypeEnum.of(chatMessageVo.getType());
         switch (messageTypeEnum) {
             case PRIVATE:
-                Long loginUserId = Long.valueOf(StpUtil.getLoginIdByToken(token).toString());
+                long loginUserId = Long.parseLong(StpUtil.getLoginIdByToken(token).toString());
                 long uid1 = Math.min(loginUserId, uid);
                 long uid2 = Math.max(loginUserId, uid);
                 //查询是否有聊天室了

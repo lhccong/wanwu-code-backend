@@ -96,4 +96,11 @@ public interface ChatService {
      * @param request 请求
      */
     void setMsgMark(Long uid, ChatMessageMarkReq request);
+
+
+    /**
+     * @param uid uid
+     * @return {@link ChatRoomResp}
+     */
+    RoomFriendVo getRoomByTargetUid(Long uid);
 }

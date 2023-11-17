@@ -14,7 +14,6 @@ import com.cong.wanwu.usercenter.model.dto.chat.response.ChatMemberResp;
 import com.cong.wanwu.usercenter.model.dto.chat.response.ChatMemberStatisticResp;
 import com.cong.wanwu.usercenter.model.dto.chat.response.ChatMessageResp;
 import com.cong.wanwu.usercenter.model.dto.chat.response.ChatRoomResp;
-import com.cong.wanwu.usercenter.model.entity.chat.RoomFriend;
 import com.cong.wanwu.usercenter.model.vo.message.RoomFriendVo;
 import com.cong.wanwu.usercenter.service.ChatService;
 import io.swagger.annotations.Api;
@@ -61,7 +60,7 @@ public class ChatController {
         return ResultUtils.success(chatService.getRoomFriendPage(request));
     }
 
-    @GetMapping("public/member/statistic")
+    @GetMapping("/public/member/statistic")
     @ApiOperation("群成员人数统计")
     public BaseResponse<ChatMemberStatisticResp> getMemberStatistic() {
         return ResultUtils.success(chatService.getMemberStatistic());
@@ -96,6 +95,18 @@ public class ChatController {
 //    @FrequencyControl(time = 20, count = 3, target = FrequencyControl.Target.UID)
     public void setMsgMark(@Valid @RequestBody ChatMessageMarkReq request) {
         chatService.setMsgMark((Long) StpUtil.getLoginId(), request);
+    }
+
+    /**
+     * 根据目标用户id获取conversationVo，如果没有就返回一个id为-1的
+     * @param uid
+     * @return
+     */
+    @GetMapping("/public/room/user")
+    @ApiOperation("查询会话")
+    public BaseResponse getRoomByTargetUid(Long uid) {
+        RoomFriendVo chatRoomResp = chatService.getRoomByTargetUid(uid);
+        return ResultUtils.success(chatRoomResp);
     }
 }
 

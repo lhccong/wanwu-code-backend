@@ -3,6 +3,7 @@ package com.cong.wanwu.usercenter.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.cong.wanwu.common.model.entity.User;
 import com.cong.wanwu.common.model.vo.request.CursorPageBaseReq;
 import com.cong.wanwu.common.model.vo.response.CursorPageBaseResp;
@@ -33,6 +34,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.baomidou.mybatisplus.core.toolkit.Wrappers.lambdaQuery;
 
 /**
  * 聊天服务实现
@@ -102,6 +105,35 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public void setMsgMark(Long uid, ChatMessageMarkReq request) {
+
+    }
+
+    @Override
+    public RoomFriendVo getRoomByTargetUid(Long uid) {
+        Long loginUserId = Long.valueOf(StpUtil.getLoginId().toString());
+        RoomFriend roomFriend = roomFriendService.getOne(new LambdaQueryWrapper<RoomFriend>().eq(RoomFriend::getUid1,uid).eq(RoomFriend::getUid2,loginUserId)
+                .or().eq(RoomFriend::getUid2,uid).eq(RoomFriend::getUid1,loginUserId));
+        User user = userService.getById(uid);
+        if (roomFriend==null){
+            RoomFriendVo roomFriendVo = new RoomFriendVo();
+            roomFriendVo.setId(-1L);
+            roomFriendVo.setRoomId(-1L);
+            roomFriendVo.setFromUid(loginUserId);
+            roomFriendVo.setFromUsername(user.getUserName());
+            roomFriendVo.setAvatar(user.getUserAvatar());
+            roomFriendVo.setUnread(1);
+            roomFriendVo.setLastMessage("");
+            roomFriendVo.setUpdateTime(new Date());
+            return roomFriendVo;
+        }
+        RoomFriendVo roomFriendVo = BeanCopyUtils.copyBean(roomFriend, RoomFriendVo.class);
+        roomFriendVo.setFromUid(loginUserId);
+        roomFriendVo.setFromUsername(user.getUserName());
+        roomFriendVo.setAvatar(user.getUserAvatar());
+        roomFriendVo.setUnread(1);
+        roomFriendVo.setLastMessage("");
+        roomFriendVo.setUpdateTime(new Date());
+        return roomFriendVo;
 
     }
 
